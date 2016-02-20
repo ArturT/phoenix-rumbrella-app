@@ -20,6 +20,10 @@ defmodule InfoSysTest do
       send(owner, {:backend, self()})
       :timer.sleep(:infinity)
     end
+
+    def fetch("boom", _ref, _owner, _limit) do
+      raise "boom!"
+    end
   end
 
   test "compute/2 with backend results" do
@@ -57,5 +61,12 @@ defmodule InfoSysTest do
     # Because we don’t expect messages to arrive in the first place, calling refute_receive multiple times may quickly become expensive as each call waits 100ms.
     # Since we’ve already made sure the backend is down, there is no need to wait as the messages we are refuting would already be in our inbox if they leaked.
     # We can use refute_received for this purpose. Saving a few milliseconds might not seem like much, but across hundreds of tests, they add up.
+  end
+
+  @tag :capture_log
+  test "compute/2 discards backend errors" do
+    assert InfoSys.compute("boom", backends: [TestBackend]) == []
+    refute_received {:DOWN, _, _, _, _}
+    refute_received :timedout
   end
 end
