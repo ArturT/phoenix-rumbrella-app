@@ -9,7 +9,7 @@ defmodule InfoSys.Test.HTTPClient do
       String.contains?(url, "1%20+%201") ->
         {:ok, {[], [], @wolfram_xml}}
       true ->
-        {:ok, [[], [], "<queryresult></queryresult>"]}
+        {:ok, {[], [], "<queryresult></queryresult>"}}
     end
   end
 end
