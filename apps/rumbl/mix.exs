@@ -7,6 +7,10 @@ defmodule Rumbl.Mixfile do
      elixir: "~> 1.0",
      elixirc_paths: elixirc_paths(Mix.env),
      compilers: [:phoenix, :gettext] ++ Mix.compilers,
+     build_path: "../../_build",
+     config_path: "../../config/config.exs",
+     deps_path: "../../deps",
+     lockfile: "../../mix.lock",
      build_embedded: Mix.env == :prod,
      start_permanent: Mix.env == :prod,
      aliases: aliases,
@@ -18,7 +22,7 @@ defmodule Rumbl.Mixfile do
   # Type `mix help compile.app` for more information.
   def application do
     [mod: {Rumbl, []},
-     applications: [:phoenix, :phoenix_html, :cowboy, :logger, :gettext,
+     applications: [:phoenix, :phoenix_html, :cowboy, :logger, :info_sys, :gettext,
                     :phoenix_ecto, :postgrex, :comeonin]]
   end
 
@@ -38,6 +42,7 @@ defmodule Rumbl.Mixfile do
      {:gettext, "~> 0.9"},
      {:cowboy, "~> 1.0"},
      {:comeonin, "~> 2.1"},
+     {:info_sys, in_umbrella: true}
     ]
   end
 
