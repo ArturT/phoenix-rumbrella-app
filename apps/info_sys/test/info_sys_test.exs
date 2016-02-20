@@ -50,7 +50,7 @@ defmodule InfoSysTest do
 
     # make sure there are no further :DOWN or :timedout messages in our inbox by calling refute_received.
     refute_received {:DOWN, _, _, _, _}
-    refute_received :timeout
+    refute_received :timedout
 
     # Notice we used refute_received instead of refute_receive. These functions are different.
     # Use refute_receive to wait 100 milliseconds and make sure no matching message arrives at the inbox.
