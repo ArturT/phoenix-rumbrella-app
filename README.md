@@ -13,3 +13,8 @@ Run tests for all apps:
 You can start rumbl app from main directory:
 
     $ mix phoenix.server
+
+Run single test file for particular app from apps directory. The command must be run from main directory of umbrella app.
+
+    # note there is missing prefix apps/rumbl/ in the test file path
+    $ mix test test/channels/video_channel_test.exs
