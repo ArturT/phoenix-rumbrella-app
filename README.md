@@ -18,3 +18,9 @@ Run single test file for particular app from apps directory. The command must be
 
     # note there is missing prefix apps/rumbl/ in the test file path
     $ mix test test/channels/video_channel_test.exs
+
+How to introspecting:
+
+    $ cd apps/rumbl
+    $ iex -S mix phoenix.server
+    iex(0)> :observer.start
