@@ -1,3 +1,9 @@
+defmodule InfoSys.Test.HTTPClient do
+  def request(_url) do
+    {:ok, {[], [], "<queryresult></queryresult>"}}
+  end
+end
+
 ExUnit.start
 
 Mix.Task.run "ecto.create", ~w(-r Rumbl.Repo --quiet)
