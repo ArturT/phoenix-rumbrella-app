@@ -22,4 +22,11 @@ defmodule Rumbl.Channels.VideoChannelTest do
     assert String.to_integer(socket.assigns.video_id) == vid.id
     assert %{annotations: [%{body: "one"}, %{body: "two"}]} = reply
   end
+
+  test "inserting new annotations", %{socket: socket, video: vid} do
+    {:ok, _, socket} = subscribe_and_join(socket, "video:#{vid.id}", %{})
+    ref = push socket, "new_annotation", %{body: "the body", at: 0}
+    assert_reply ref, :ok, %{}
+    assert_broadcast "new_annotation", %{}
+  end
 end
