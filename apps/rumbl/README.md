@@ -20,6 +20,14 @@ Ready to run in production? Please [check our deployment guides](http://www.phoe
 
 # Tips
 
+## Set up project
+
+    $ mix ecto.create
+    $ mix ecto.migrate
+
+    $ MIX_ENV=test mix ecto.create
+    $ MIX_ENV=test mix ecto.migrate
+
 ## How to create users
 
     $ iex -S mix
