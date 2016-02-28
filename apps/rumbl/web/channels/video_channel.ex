@@ -41,7 +41,8 @@ defmodule Rumbl.VideoChannel do
   # For every new_annotation broadcast,
   # append an is_editable value for client metadata.
   def handle_out("new_annotation", msg, socket) do
-    %{video: video, user_id: user_id} = socket.assigns
+    %{video_id: video_id, user_id: user_id} = socket.assigns
+    video = Repo.get!(Rumbl.Video, video_id)
     push socket, "new_annotation", Map.merge(msg, %{is_editable: video.user_id == user_id})
     {:noreply, socket}
   end
