@@ -12,7 +12,12 @@
 
 alias Rumbl.Repo
 alias Rumbl.Category
+alias Rumbl.User
 
 for category <- ~w(Action Drama Romance Comedy Sci-fi) do
   Repo.get_by(Category, name: category) || Repo.insert!(%Category{name: category})
+end
+
+for user <- ~w(wolfram) do
+  Repo.get_by(User, username: user) || Repo.insert!(%User{username: user})
 end
